@@ -1,5 +1,5 @@
 public with sharing class AdventOfCode1 {
-    static public void firstPuzzle() {
+    static public Integer firstPuzzle() {
         String calorieList = AdventOfCode2022Utilities.getStaticResource('AdventOfCode1');
         Integer mostTotalCalories = 0;
         Integer tmpCalCount = 0;
@@ -11,10 +11,10 @@ public with sharing class AdventOfCode1 {
                 tmpCalCount += Integer.valueOf(s);
             }
         }
-        System.debug(mostTotalCalories);
+        return mostTotalCalories;
     }
 
-    static public void secondPuzzle() {
+    static public Integer secondPuzzle() {
         String calorieList = AdventOfCode2022Utilities.getStaticResource('AdventOfCode1');
         List<Integer> CalorieCountList = new List<Integer>();
         Integer tmpCalCount = 0;
@@ -29,6 +29,6 @@ public with sharing class AdventOfCode1 {
         CalorieCountList.sort();
         Integer listSize = CalorieCountList.size();
         Integer sumCalories = CalorieCountList[listSize-1]+CalorieCountList[listSize-2]+CalorieCountList[listSize-3];
-        System.debug(sumCalories);
+        return sumCalories;
     }
 }
