@@ -23,6 +23,9 @@ yarn-error.log*
 
 # Dependency directories
 node_modules/
+config/
+.vscode/
+.husky/
 
 # Eslint cache
 .eslintcache
