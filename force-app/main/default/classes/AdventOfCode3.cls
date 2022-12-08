@@ -13,10 +13,25 @@ public with sharing class AdventOfCode3 {
         return sumOfPrios;
     }
 
-    /* public Integer secondPuzzle(){
+    public Integer secondPuzzle(){
+        Integer counter = 0;
         sumOfPrios = 0;
+        String s1, s2, s3;
+
+        for(String s : PuzzleInput){
+            counter++;
+            
+            if(counter == 1) s1 = s;
+            if(counter == 2) s2 = s;
+            if(counter == 3){
+                s3 = s;
+                sumOfPrios += compareRucksacks(s1, s2, s3);
+                counter = 0;
+            }
+        }
+
         return sumOfPrios;
-    } */
+    }
 
     public Integer compareCompartments(String firstCompartment, String secondCompartment){
         Integer ruckSackScore = 0;
@@ -28,6 +43,26 @@ public with sharing class AdventOfCode3 {
             }
         }
         return ruckSackScore;
+    }
+
+    public Integer compareRucksacks(String s1, String s2, String s3){
+        Integer groupScore = 0;
+        Set<String> alreadyCheckedLetters = new Set<String>();
+        System.debug('Checking the following bags: ');
+        System.debug('s1: ' + s1);
+        System.debug('s2: ' + s2);
+        System.debug('s3: ' + s3);
+        for(String x : s1.split('')){
+            if(alreadyCheckedLetters.contains(x)) continue;
+            if(s2.contains(x) && s3.contains(x)){
+                System.debug('Bags 2 and 3 did contain: ' + x);
+                groupScore += getPrioScore(x);
+                alreadyCheckedLetters.add(x);
+            } else {
+                System.debug('Bags 2 and 3 did not contain: ' + x);
+            }
+        }
+        return groupScore;
     }
 
     public Integer getPrioScore(String item){
