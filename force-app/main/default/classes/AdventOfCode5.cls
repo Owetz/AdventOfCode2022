@@ -84,14 +84,23 @@ public with sharing class AdventOfCode5 {
 
     public void followInstructions(String instructions){
         List<String> easyToReadInstructions = instructions.split(' ');
-        Integer numberOfStacks, fromStack, toStack;
-        numberOfStacks = valueAsInteger(easyToReadInstructions[1]);
+        Integer numberOfCrates, fromStack, toStack;
+        numberOfCrates = valueAsInteger(easyToReadInstructions[1]);
         fromStack = valueAsInteger(easyToReadInstructions[3]);
         toStack = valueAsInteger(easyToReadInstructions[5]);
-        moveCrateToAnotherStack(numberOfStacks, fromStack, toStack);
+        if(numberOfCrates > 1){
+            moveMultipleCratesToAnotherStack(numberOfCrates, fromStack, toStack);
+        } else {
+            moveSingleCrateToAnotherStack(fromStack, toStack);
+        }
     }
 
-    public void moveCrateToAnotherStack(Integer numberOfCrates, Integer fromStack, Integer toStack){
+    public void moveSingleCrateToAnotherStack(Integer fromStack, Integer toStack){
+        String crate = removeCrateFromStack(fromStack);
+        addCrateToStack(toStack, crate);
+    }
+    
+    public void moveMultipleCratesToAnotherStack(Integer numberOfCrates, Integer fromStack, Integer toStack){
         for(Integer i = 1; i <= numberOfCrates; i++){
             String crate = removeCrateFromStack(fromStack);
             addCrateToStack(toStack, crate);
