@@ -27,6 +27,8 @@ config/
 .vscode/
 .husky/
 
+scripts/
+
 # Eslint cache
 .eslintcache
 
@@ -90,5 +92,3 @@ force-app/main/default/staticresources/SiteSamples/img/poweredby.png
 force-app/main/default/staticresources/SiteSamples/img/tools.png
 force-app/main/default/staticresources/SiteSamples/img/unauthorized.png
 force-app/main/default/staticresources/SiteSamples/img/warning.png
-scripts/apex/hello.apex
-scripts/apex/hello.apex
