@@ -78,9 +78,12 @@ public with sharing class AdventOfCode5 {
         System.debug('Message to the elves: ' + generateMessageToElfs(crateStacks));
     }
     
-    /* public void secondPuzzle() {
-
-    } */
+    public void secondPuzzle() {
+        for(String instructions : PuzzleInput){
+            followInstructions(instructions);
+        }
+        System.debug('Message to the elves: ' + generateMessageToElfs(crateStacks));
+    }
 
     public void followInstructions(String instructions){
         List<String> easyToReadInstructions = instructions.split(' ');
@@ -101,19 +104,30 @@ public with sharing class AdventOfCode5 {
     }
     
     public void moveMultipleCratesToAnotherStack(Integer numberOfCrates, Integer fromStack, Integer toStack){
-        for(Integer i = 1; i <= numberOfCrates; i++){
-            String crate = removeCrateFromStack(fromStack);
-            addCrateToStack(toStack, crate);
-        }
+        List<String> liftedCrates = removeCratesFromStack(numberOfCrates, fromStack);
+        addCratesToStack(toStack, liftedCrates);
     }
 
     public void addCrateToStack(Integer stackNumber, String crate){
         crateStacks.get(stackNumber).add(crate);
     }
+    
+    public void addCratesToStack(Integer stackNumber, List<String> crates){
+        crateStacks.get(stackNumber).addAll(crates);
+    }
 
     public String removeCrateFromStack(Integer stackNumber){
         List<String> stack = crateStacks.get(stackNumber);
         return stack.remove(stack.size()-1);
+    }
+
+    public List<String> removeCratesFromStack(Integer numberOfCrates, Integer stackNumber){
+        List<String> stack = crateStacks.get(stackNumber);
+        List<String> liftedCrates = new List<String>();
+        for(Integer i = numberOfCrates; i > 0; i--){
+            liftedCrates.add(stack.remove(stack.size()-i));
+        }
+        return liftedCrates;
     }
 
     public String generateMessageToElfs(Map<Integer,List<String>> crateStacks){
